@@ -1,0 +1,16 @@
+﻿@using OnlineGameLaden.WebUI.Models
+@using OnlineGameLaden.WebUI.HtmlHelpers// ToDo: Viwe/WebConfig einrichten
+@model GamesListViewModel
+
+@{
+    ViewBag.Title = "Waren";
+}
+
+@foreach (var p in @Model.Games)
+{
+    @Html.Partial("GameSummary", p)
+}
+
+<div class="btn-group pull-right">
+    @Html.PageLinks(Model.PagingInfo, x => Url.Action("List", new { page = x, category = Model.CurrentCategory }))
+</div>
