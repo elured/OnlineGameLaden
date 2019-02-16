@@ -1,7 +1,9 @@
 ﻿using Ninject;
 using Ninject.Modules;
 using Ninject.Web.Mvc;
+using OnlineGameLaden.Domain.Entities;
 using OnlineGameLaden.WebUI.Util;
+using OnlineGameLaden.WebUI.Util.Binders;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +21,7 @@ namespace OnlineGameLaden.WebUI
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            ModelBinders.Binders.Add(typeof(Cart), new CartModelBinder());
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             NinjectModule registrations = new NinjectRegistrations();
