@@ -1,11 +1,14 @@
 ﻿using Ninject;
 using Ninject.Modules;
 using Ninject.Web.Mvc;
+using OnlineGameLaden.Domain.Abstract;
+using OnlineGameLaden.Domain.Concrete;
 using OnlineGameLaden.Domain.Entities;
 using OnlineGameLaden.WebUI.Util;
 using OnlineGameLaden.WebUI.Util.Binders;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -27,6 +30,8 @@ namespace OnlineGameLaden.WebUI
             NinjectModule registrations = new NinjectRegistrations();
             var kernel = new StandardKernel(registrations);
             DependencyResolver.SetResolver(new NinjectDependencyResolver(kernel));
+
+
         }
     }
 }
