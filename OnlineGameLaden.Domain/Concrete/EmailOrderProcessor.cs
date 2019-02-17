@@ -20,7 +20,7 @@ public class EmailSettings
         public string ServerName = "smtp.example.com";
         public int ServerPort = 587;
         public bool WriteAsFile = true;
-        public string FileLocation = @"c:\game_store_emails";
+        public string FileLocation = @"C:\Projects\Tests";
     }
 
     public class EmailOrderProcessor : IOrderProcessor
@@ -86,6 +86,10 @@ public class EmailSettings
                 {
                     mailMessage.BodyEncoding = Encoding.UTF8;
                 }
+
+                var dir = smtpClient.PickupDirectoryLocation;
+                if (System.IO.Directory.Exists(dir))
+                    ;
 
                 smtpClient.Send(mailMessage);
             }
