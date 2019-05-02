@@ -12,9 +12,6 @@ namespace OnlineGameLaden.Domain.Concrete
     {
         EFDbContext context = new EFDbContext();
 
-        public IEnumerable<Game> Games
-        {
-            get { return context.Games; }
-        }
+        public IEnumerable<Game> Games => context.Games; 
     }
 }
