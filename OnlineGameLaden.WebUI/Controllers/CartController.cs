@@ -64,7 +64,7 @@ namespace OnlineGameLaden.WebUI.Controllers
         {
             if (cart.Lines.Count() == 0)
             {
-                ModelState.AddModelError("", "Извините, ваша корзина пуста!");
+                ModelState.AddModelError("", "Ihr Warenkorb ist derzeit leer!");
             }
 
             if (ModelState.IsValid)

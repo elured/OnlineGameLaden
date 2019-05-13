@@ -1,7 +1,7 @@
 ﻿@model OnlineGameLaden.Domain.Entities.CartIndexViewModel
 
 @{
-    ViewBag.Title = "GameStore: ваша корзина";
+    ViewBag.Title = "GameStore: Ihr Warenkorb";
 }
 <style>
     #cartTable td {
@@ -9,14 +9,14 @@
     }
 </style>
 
-<h2>Ваша корзина</h2>
+<h2>Ihr Warenkorb</h2>
 <table class="table">
     <thead>
         <tr>
-            <th>Кол-во</th>
-            <th>Игра</th>
-            <th class="text-right">Цена</th>
-            <th class="text-right">Общая цена</th>
+            <th>Anzahl</th>
+            <th>Spiel</th>
+            <th class="text-right">Preis</th>
+            <th class="text-right">Gesamtpreis</th>
         </tr>
     </thead>
     <tbody>
@@ -25,16 +25,16 @@
             <tr>
                 <td class="text-center">@line.Quantity</td>
                 <td class="text-left">@line.Game.Name</td>
-                <td class="text-right">@line.Game.Price.ToString("# руб")</td>
+                <td class="text-right">@line.Game.Price.ToString("# Euro")</td>
                 <td class="text-right">
-                    @((line.Quantity * line.Game.Price).ToString("# руб"))
+                    @((line.Quantity * line.Game.Price).ToString("# Eruo"))
                 </td>
                 <td>
                     @using (Html.BeginForm("RemoveFromCart", "Cart"))
                     {
                         @Html.Hidden("GameId", line.Game.GameId)
                         @Html.HiddenFor(x => x.ReturnUrl)
-                        <input class="btn btn-sm btn-warning" type="submit" value="Удалить" />
+                        <input class="btn btn-sm btn-warning" type="submit" value="Löschen" />
                     }
                 </td>
             </tr>
@@ -44,13 +44,13 @@
         <tr>
             <td colspan="3" class="text-right">Итого:</td>
             <td class="text-right">
-                @Model.Cart.ComputeTotalValue().ToString("# руб")
+                @Model.Cart.ComputeTotalValue().ToString("# Euro")
             </td>
         </tr>
     </tfoot>
 </table>
 
 <div class="text-center">
-    <a class="btn btn-primary" href="@Model.ReturnUrl">Продолжить покупки</a>
-    @Html.ActionLink("Оформить заказ", "Checkout", null, new { @class = "btn btn-primary" })
+    <a class="btn btn-primary" href="@Model.ReturnUrl">Weiter einkaufen</a>
+    @Html.ActionLink("Bestellung aufgeben", "Checkout", null, new { @class = "btn btn-primary" })
 </div>

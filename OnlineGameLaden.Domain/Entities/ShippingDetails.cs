@@ -9,25 +9,25 @@ namespace OnlineGameLaden.Domain.Entities
 {
     public class ShippingDetails
     {
-            [Required(ErrorMessage = "Укажите как вас зовут")]
+            [Required(ErrorMessage = "Bitte geben Sie Ihren Namen ein")]
             public string Name { get; set; }
 
-            [Required(ErrorMessage = "Вставьте первый адрес доставки")]
-            [Display(Name = "Первый адрес")]
+            [Required(ErrorMessage = "Geben Sie die erste Lieferadresse ein")]
+            [Display(Name = "Erste Lieferadresse")]
             public string Line1 { get; set; }
 
-            [Display(Name = "Второй адрес")]
+            [Display(Name = "Zweite Lieferadresse")]
             public string Line2 { get; set; }
 
-            [Display(Name = "Третий адрес")]
+            [Display(Name = "Dritte Lieferadresse")]
             public string Line3 { get; set; }
 
-            [Required(ErrorMessage = "Укажите город")]
-            [Display(Name = "Город")]
+            [Required(ErrorMessage = "Geben Sie Ihre Stadt ein")]
+            [Display(Name = "Stadt")]
             public string City { get; set; }
 
-            [Required(ErrorMessage = "Укажите страну")]
-            [Display(Name = "Страна")]
+            [Required(ErrorMessage = "Geben Sie Ihres Land ein")]
+            [Display(Name = "Land")]
             public string Country { get; set; }
 
             public bool GiftWrap { get; set; }

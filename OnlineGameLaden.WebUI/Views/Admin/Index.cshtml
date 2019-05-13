@@ -1,21 +1,21 @@
 ﻿@model IEnumerable<OnlineGameLaden.Domain.Entities.Game>
 
 @{
-    ViewBag.Title = "Админ панель: список товаров";
+    ViewBag.Title = "Adminpanel: Liste der Waren";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3>Список игр</h3>
+        <h3>Liste der Spiele</h3>
     </div>
     <div class="panel-body">
         <table class="table table-striped table-condensed table-bordered">
             <tr>
                 <th class="text-right">ID</th>
-                <th>Название</th>
-                <th class="text-right">Цена</th>
-                <th class="text-center">Действия</th>
+                <th>Name</th>
+                <th class="text-right">Preis</th>
+                <th class="text-center">Handlungen(Действия)</th>
             </tr>
             @foreach (var item in Model)
             {
@@ -29,7 +29,7 @@
                             @Html.Hidden("GameId", item.GameId)
                             <input type="submit"
                                    class="btn btn-default btn-xs"
-                                   value="Удалить" />
+                                   value="Löschen" />
                         }
                     </td>
                 </tr>

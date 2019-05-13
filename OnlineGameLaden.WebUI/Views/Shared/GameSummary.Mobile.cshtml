@@ -7,14 +7,14 @@
             @Model.Description
         </div>
         <div>
-            <strong>(@Model.Price.ToString("# руб"))</strong>
+            <strong>(@Model.Price.ToString("# Euro"))</strong>
         </div>
         <div>   
             @using (Html.BeginForm("AddToCart", "Cart"))
             {
                 @Html.HiddenFor(x => x.GameId)
                 @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
-                <input type="submit" class="btn btn-success" value="В корзину" />
+                <input type="submit" class="btn btn-success" value="In Warenkorb" />
             }
         </div>
     </div>
