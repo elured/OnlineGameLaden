@@ -1,4 +1,5 @@
 ﻿using OnlineGameLaden.Domain.Abstract;
+using OnlineGameLaden.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,11 @@ namespace OnlineGameLaden.WebUI.Controllers
         public ViewResult Index()
         {
             return View(repository.Games);
+        }
+        public ViewResult Edit(int gameId)
+        {
+            Game game = repository.Games.FirstOrDefault(i => i.GameId == gameId);
+            return View(game);
         }
     }
 }
