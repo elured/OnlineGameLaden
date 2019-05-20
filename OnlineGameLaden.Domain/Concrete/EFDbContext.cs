@@ -20,12 +20,11 @@ namespace OnlineGameLaden.Domain.Concrete
         public DbSet<Game> Games { get; set; }
     }
 
-    public class EFDbInitializer : CreateDatabaseIfNotExists<EFDbContext>
+    public class EFDbInitializer : DropCreateDatabaseAlways<EFDbContext>//CreateDatabaseIfNotExists
     {
 
         protected override void Seed(EFDbContext context)
         {
-
             List<Game> games = new List<Game>
             {
                 new Game{Name ="SimCity", Description = "1989 veröffentlichte EA einen Meilenstein der Spielegeschichte und Grundstein der Aufbau Simulation: SimCity. Knapp 20 Jahre später stellt der Entwickler nun die Städtebau", Category = "Simulation", Price= 15.00M},
@@ -49,4 +48,5 @@ namespace OnlineGameLaden.Domain.Concrete
             base.Seed(context);
         }
     }
+
 }

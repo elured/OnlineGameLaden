@@ -1,0 +1,49 @@
+﻿@model OnlineGameLaden.Domain.Entities.Game
+@{
+    ViewBag.Title = "Adminbereich: Artikelbearbeitung";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Bearbeitung des Spiels "@Model.Name"</h2>
+
+@*@using (Html.BeginForm())
+{
+    @Html.EditorForModel()
+    <input type="submit" value="Speichern" />
+    @Html.ActionLink("Abbrechen und zurück zur Warenliste", "Index")
+}*@
+
+<div>
+    <div>
+        <h3>Artikelbearbeitung: "@Model.Name"</h3>
+    </div>
+    @using (Html.BeginForm())
+    {
+        <div class="panel-body">
+            @Html.HiddenFor(m => m.GameId)
+            @foreach (var property in ViewData.ModelMetadata.Properties)
+            {
+                if(property.PropertyName != "GameId")
+                {
+            <div class="form-group">
+                <label> @(property.DisplayName ?? property.PropertyName)</label>
+                @if (property.PropertyName == "Description")
+                {
+                    @Html.TextArea(property.PropertyName, null, new { @class = "form-control", rows = 5 })
+                }
+                else
+                {
+                    @Html.TextBox(property.PropertyName, null, new { @class = "form-control" })
+                }
+                @Html.ValidationMessage(property.PropertyName)
+            </div>
+                }
+
+            }
+        </div>
+        <div class="panel-footer">
+            <input type="submit" value="Speichern" class="btn btn-primary"/>
+            @Html.ActionLink("Alle Änderungen verwerfen und zurück zur Warenliste gehen", "Index", null, new { @class = "btn btn-default"}) 
+        </div>
+    }
+</div>

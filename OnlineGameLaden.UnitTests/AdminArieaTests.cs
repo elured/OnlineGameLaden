@@ -7,6 +7,7 @@ using OnlineGameLaden.Domain.Abstract;
 using OnlineGameLaden.Domain.Entities;
 using OnlineGameLaden.WebUI.Controllers;
 using System.Linq;
+using System.Web.Mvc;
 
 namespace OnlineGameLaden.UnitTests
 {
@@ -90,6 +91,43 @@ namespace OnlineGameLaden.UnitTests
 
             Assert.IsNull(result);
 
+        }
+
+        [TestMethod]
+        public void CanSaveValidChanges()
+        {
+            // Arrange
+            Mock<IGameRepository> mock = new Mock<IGameRepository>();
+            AdminController controller = new AdminController(mock.Object);
+            Game game = new Game { Name = "Test" };
+
+            // Action
+            ActionResult result = controller.Edit(game);
+
+            // Assert 
+            //Hier pruefen wir, ob repository aufgerufen wird
+            mock.Verify(m => m.SaveProdukt(game));
+
+            Assert.IsNotInstanceOfType(result, typeof(ViewResult));
+
+        }
+
+        [TestMethod]
+        public void CannotSaveInvalidChanges()
+        {
+            // Arrange
+            Mock<IGameRepository> mock = new Mock<IGameRepository>();
+            AdminController controller = new AdminController(mock.Object);
+            Game game = new Game { Name = "Test" };
+            controller.ModelState.AddModelError("error", "error");
+
+            // Action
+            ActionResult result = controller.Edit(game);
+
+            // Assert
+            //Hier pruefen wir, ob repository NICHT aufgerufen wird
+            mock.Verify(m => m.SaveProdukt(It.IsAny<Game>()), Times.Never);
+            Assert.IsInstanceOfType(result, typeof(ViewResult));
         }
 
         // Arrange

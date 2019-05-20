@@ -26,5 +26,19 @@ namespace OnlineGameLaden.WebUI.Controllers
             Game game = repository.Games.FirstOrDefault(i => i.GameId == gameId);
             return View(game);
         }
+
+        [HttpPost]
+        public ActionResult Edit(Game game)
+        {
+            if (ModelState.IsValid)
+            {
+                repository.SaveProdukt(game);
+                TempData["message"] = $"Die Änderungen im Produkt {game.Name} wurden gespeichert";
+                return RedirectToAction("Index");
+            }
+            else
+                //etwas ist schief gegangen
+                return View(game);
+        }
     }
 }
