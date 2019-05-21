@@ -21,6 +21,12 @@ namespace OnlineGameLaden.WebUI.Controllers
         {
             return View(repository.Games);
         }
+
+        public ViewResult Create()
+        {
+            return View("Edit", new Game());
+        }
+
         public ViewResult Edit(int gameId)
         {
             Game game = repository.Games.FirstOrDefault(i => i.GameId == gameId);
@@ -39,6 +45,16 @@ namespace OnlineGameLaden.WebUI.Controllers
             else
                 //etwas ist schief gegangen
                 return View(game);
+        }
+        [HttpPost]
+        public ActionResult Delete(int gameId)
+        {
+            Game gameToDel = repository.DeleteProdukt(gameId);
+            if(gameToDel != null)
+            {
+                TempData["message"] = $"Das Speil \"{gameToDel.Name}\" wurde gelöscht";
+            }
+            return RedirectToAction("Index");
         }
     }
 }

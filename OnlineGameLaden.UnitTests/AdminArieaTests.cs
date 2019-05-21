@@ -129,7 +129,31 @@ namespace OnlineGameLaden.UnitTests
             mock.Verify(m => m.SaveProdukt(It.IsAny<Game>()), Times.Never);
             Assert.IsInstanceOfType(result, typeof(ViewResult));
         }
+        [TestMethod]
+        public void CanDeleteValidGames()
+        {
+            // Arrange - Erstellen vom Objekt
+            Game game = new Game { GameId = 2, Name = "game2" };
 
+            // Arrange - Erstellen vom mockRepository
+            Mock<IGameRepository> mock = new Mock<IGameRepository>();
+            mock.Setup(i => i.Games).Returns(new List<Game> {
+                    new Game { GameId = 1, Name = "game1"},
+                    new Game { GameId = 2, Name = "game2"},
+                    new Game { GameId = 3, Name = "game3"},
+                    new Game { GameId = 4, Name = "game4"},
+                    new Game { GameId = 5, Name = "game5"}
+            });
+
+            // Arrange - Erstellen vom mockRepository
+            AdminController controller = new AdminController(mock.Object);
+
+            // Action - hier löschen wir das Spiel
+            controller.Delete(game.GameId);
+
+            // Assert
+            mock.Verify(m => m.DeleteProdukt(game.GameId));
+        }
         // Arrange
         // Action
         // Assert

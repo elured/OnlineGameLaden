@@ -11,5 +11,6 @@ namespace OnlineGameLaden.Domain.Abstract
     {
         IEnumerable<Game> Games { get; }
         void SaveProdukt(Game game);
+        Game DeleteProdukt(int gameId);
     }
 }
