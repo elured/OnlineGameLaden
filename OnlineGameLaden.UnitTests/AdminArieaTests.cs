@@ -145,7 +145,7 @@ namespace OnlineGameLaden.UnitTests
                     new Game { GameId = 5, Name = "game5"}
             });
 
-            // Arrange - Erstellen vom mockRepository
+            // Arrange - Erstellen vom mock Repository
             AdminController controller = new AdminController(mock.Object);
 
             // Action - hier löschen wir das Spiel
@@ -154,6 +154,7 @@ namespace OnlineGameLaden.UnitTests
             // Assert
             mock.Verify(m => m.DeleteProdukt(game.GameId));
         }
+
         // Arrange
         // Action
         // Assert

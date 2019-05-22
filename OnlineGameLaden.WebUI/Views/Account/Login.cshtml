@@ -1,0 +1,30 @@
+﻿@model OnlineGameLaden.WebUI.Models.LoginModel
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="panel" style="width: 600px;margin: 50px auto;">
+    <div class="panel-heading">
+        <h3>Anmeldung</h3>
+    </div>
+    <div class="panel-body">
+        <p class="lead">Bitte melden Sie sich an, um das Admin-Panel zuzugreifen</p>
+        @using (Html.BeginForm())
+        {
+            @Html.ValidationSummary()
+            <div class="form-group">
+                <label>Benutzername:</label>
+                @Html.TextBoxFor(i => i.UserName, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label>Kennwort:</label>
+                @Html.PasswordFor(i => i.Password, new { @class = "form-control" })
+            </div>
+            <input type="submit" value="Einloggen" />@*Anmelden*@
+        }
+    </div>
+</div>
+@*https://bootsnipp.com/snippets/dldxB
+    https://www.tutorialrepublic.com/snippets/preview.php?topic=bootstrap&file=simple-login-form
+        https://getbootstrap.com/docs/3.4/css/*@

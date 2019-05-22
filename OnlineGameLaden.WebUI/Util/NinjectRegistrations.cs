@@ -3,6 +3,8 @@ using Ninject.Modules;
 using OnlineGameLaden.Domain.Abstract;
 using OnlineGameLaden.Domain.Concrete;
 using OnlineGameLaden.Domain.Entities;
+using OnlineGameLaden.WebUI.Util.Abstract;
+using OnlineGameLaden.WebUI.Util.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -34,6 +36,8 @@ namespace OnlineGameLaden.WebUI.Util
 
             Bind<IOrderProcessor>().To<EmailOrderProcessor>()
                 .WithConstructorArgument("settings", emailSettings);
+
+            Bind<IAuthProvider>().To<FormAuthProvider>();
         }
     }
 }

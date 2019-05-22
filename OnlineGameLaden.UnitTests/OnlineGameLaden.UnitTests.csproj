@@ -98,6 +98,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdminArieaTests.cs" />
+    <Compile Include="AdminSecurityTests.cs" />
     <Compile Include="CartTests.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
