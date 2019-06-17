@@ -2,6 +2,7 @@
 using OnlineGameLaden.Domain.Entities;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
@@ -20,7 +21,7 @@ public class EmailSettings
         public string ServerName = "smtp.example.com";
         public int ServerPort = 587;
         public bool WriteAsFile = true;
-        public string FileLocation = @"C:\Projects\Tests";
+        public string FileLocation = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\EmailTests\";
     }
 
     public class EmailOrderProcessor : IOrderProcessor
@@ -54,7 +55,7 @@ public class EmailSettings
                 StringBuilder body = new StringBuilder()
                     .AppendLine("Neue Bestellung wurde berabeitet")
                     .AppendLine("---")
-                    .AppendLine("Товары:");
+                    .AppendLine("Waren:");
 
                 foreach (var line in cart.Lines)
                 {
@@ -88,10 +89,22 @@ public class EmailSettings
                 }
 
                 var dir = smtpClient.PickupDirectoryLocation;
-                if (System.IO.Directory.Exists(dir))
-                    ;
+                if (!System.IO.Directory.Exists(dir))
+                {
+                    Directory.CreateDirectory(dir);
+                }
 
+                try
+                {
                 smtpClient.Send(mailMessage);
+
+                }
+                catch (Exception ex)
+                {
+
+                    throw;
+                }
+
             }
         }
     }
