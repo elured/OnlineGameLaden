@@ -79,7 +79,7 @@ public class EmailSettings
                 MailMessage mailMessage = new MailMessage(
                                        emailSettings.MailFromAddress,	// Absender
                                        emailSettings.MailToAddress,		// 
-                                       "Neue Bestellung wurde gesenden!",		// Thema
+                                       "Neue Bestellung wurde gesendet!",		// Thema
                                        body.ToString()); 				// Mailkörper
 
                 if (emailSettings.WriteAsFile)
