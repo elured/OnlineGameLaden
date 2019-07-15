@@ -20,7 +20,7 @@ namespace OnlineGameLaden.Domain.Concrete
         public DbSet<Game> Games { get; set; }
     }
 
-    public class EFDbInitializer : CreateDatabaseIfNotExists<EFDbContext>//DropCreateDatabaseAlways
+    public class EFDbInitializer : DropCreateDatabaseAlways<EFDbContext>//CreateDatabaseIfNotExists
     {
 
         protected override void Seed(EFDbContext context)
