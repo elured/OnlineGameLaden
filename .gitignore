@@ -10,3 +10,10 @@
 #/OnlineGameLaden.Domain/obj/Debug
 #/OnlineGameLaden.UnitTests/obj/Debug
 #/OnlineGameLaden.UnitTests/bin/Debug
+/.vs/
+/OnlineGameLaden.Domain/obj/Debug
+/OnlineGameLaden.Domain/bin/Debug
+/OnlineGameLaden.WebUI/bin
+/OnlineGameLaden.WebUI/obj/Debug
+/OnlineGameLaden.UnitTests/obj/Debug
+/OnlineGameLaden.UnitTests/bin/Debug
