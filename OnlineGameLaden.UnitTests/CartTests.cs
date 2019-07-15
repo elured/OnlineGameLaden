@@ -15,7 +15,7 @@ namespace OnlineGameLaden.UnitTests
     public class CartTests
     {
         [TestMethod]
-        public void Can_Add_New_Lines()
+        public void CanAddNewLines()
         {
             // Arrange
             Game game1 = new Game { GameId = 1, Name = "Игра1" };
@@ -36,7 +36,7 @@ namespace OnlineGameLaden.UnitTests
         }
 
         [TestMethod]
-        public void Can_Add_Quantity_For_Existing_Lines()
+        public void CanAddQuantityForExistingLines()
         {
             // Arrange
             Game game1 = new Game { GameId = 1, Name = "Игра1" };
@@ -57,7 +57,7 @@ namespace OnlineGameLaden.UnitTests
             Assert.AreEqual(results[1].Quantity, 1);
         }
         [TestMethod]
-        public void Can_Remove_Line()
+        public void CanRemoveLine()
         {
             // Arrange
             Game game1 = new Game { GameId = 1, Name = "Игра1" };
@@ -82,7 +82,7 @@ namespace OnlineGameLaden.UnitTests
         }
 
         [TestMethod]
-        public void Calculate_Cart_Total()
+        public void CalculateCartTotal()
         {
             // Arrange
             Game game1 = new Game { GameId = 1, Name = "Игра1", Price = 100 };
@@ -102,7 +102,7 @@ namespace OnlineGameLaden.UnitTests
         }
 
         [TestMethod]
-        public void Can_Clear_Contents()
+        public void CanClearContents()
         {
             // Arrange
             Game game1 = new Game { GameId = 1, Name = "Игра1", Price = 100 };
@@ -125,7 +125,7 @@ namespace OnlineGameLaden.UnitTests
         /// Проверяем добавление в корзину
         /// </summary>
         [TestMethod]
-        public void Can_Add_To_Cart()
+        public void CanAddToCart()
         {
             // Организация - создание имитированного хранилища
             Mock<IGameRepository> mock = new Mock<IGameRepository>();
@@ -151,7 +151,7 @@ namespace OnlineGameLaden.UnitTests
         /// После добавления игры в корзину, должно быть перенаправление на страницу корзины
         /// </summary>
         [TestMethod]
-        public void Adding_Game_To_Cart_Goes_To_Cart_Screen()
+        public void AddingGameToCartGoesToCartScreen()
         {
             // Организация - создание имитированного хранилища
             Mock<IGameRepository> mock = new Mock<IGameRepository>();
@@ -175,7 +175,7 @@ namespace OnlineGameLaden.UnitTests
 
         // Проверяем URL
         [TestMethod]
-        public void Can_View_Cart_Contents()
+        public void CanViewCartContents()
         {
             // Организация - создание корзины
             Cart cart = new Cart();
@@ -192,7 +192,7 @@ namespace OnlineGameLaden.UnitTests
             Assert.AreEqual(result.ReturnUrl, "myUrl");
         }
         [TestMethod]
-        public void Cannot_Checkout_Empty_Cart()
+        public void CannotCheckoutEmptyCart()
         {
             // Организация - создание имитированного обработчика заказов
             Mock<IOrderProcessor> mock = new Mock<IOrderProcessor>();
@@ -250,7 +250,7 @@ namespace OnlineGameLaden.UnitTests
         }
 
         [TestMethod]
-        public void Can_Checkout_And_Submit_Order()
+        public void CanCheckoutAndSubmitOrder()
         {
             // Организация - создание имитированного обработчика заказов
             Mock<IOrderProcessor> mock = new Mock<IOrderProcessor>();

@@ -1,4 +1,5 @@
 ﻿using OnlineGameLaden.Domain.Abstract;
+using OnlineGameLaden.Domain.Entities;
 using OnlineGameLaden.WebUI.Models;
 using System;
 using System.Collections.Generic;
@@ -45,6 +46,15 @@ namespace OnlineGameLaden.WebUI.Controllers
                 CurrentCategory = category
             };
             return View(model);
+        }
+
+        public FileContentResult getImage(int gameId)
+        {
+            Game game = repository.Games.FirstOrDefault(i => i.GameId == gameId);
+            if (game == null)
+                return File(game.ImageData, game.ImageMimeType);
+            else
+                return null;
         }
     }
 }

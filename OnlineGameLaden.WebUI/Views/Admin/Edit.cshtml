@@ -7,43 +7,78 @@
 <h2>Bearbeitung des Spiels "@Model.Name"</h2>
 
 @*@using (Html.BeginForm())
-{
-    @Html.EditorForModel()
-    <input type="submit" value="Speichern" />
-    @Html.ActionLink("Abbrechen und zurück zur Warenliste", "Index")
-}*@
+    {
+        @Html.EditorForModel()
+        <input type="submit" value="Speichern" />
+        @Html.ActionLink("Abbrechen und zurück zur Warenliste", "Index")
+    }*@
 
 <div class="panel">
     <div class="panel-heading">
         <h3>Artikelbearbeitung: "@Model.Name"</h3>
     </div>
-    @using (Html.BeginForm("Edit", "Admin"))
+    @using (Html.BeginForm("Edit", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         <div class="panel-body">
             @Html.HiddenFor(m => m.GameId)
             @foreach (var property in ViewData.ModelMetadata.Properties)
             {
-                if(property.PropertyName != "GameId")
+                switch (property.PropertyName)
                 {
-            <div class="form-group">
-                <label> @(property.DisplayName ?? property.PropertyName)</label>
-                @if (property.PropertyName == "Description")
-                {
-                    @Html.TextArea(property.PropertyName, null, new { @class = "form-control", rows = 5 })
-                }
-                else
-                {
-                    @Html.TextBox(property.PropertyName, null, new { @class = "form-control" })
-                }
-                @Html.ValidationMessage(property.PropertyName)
-            </div>
+                    case "GameId":
+                    case "ImageData":
+                    case "ImageMimeType":
+                        break;
+
+                    default:
+                        <div class="form-group">
+                            <label> @(property.DisplayName ?? property.PropertyName)</label>
+                            @if (property.PropertyName == "Description")
+                            {
+                                @Html.TextArea(property.PropertyName, null, new { @class = "form-control", rows = 5 })
+                            }
+                            else
+                            {
+                                @Html.TextBox(property.PropertyName, null, new { @class = "form-control" })
+                            }
+                            @Html.ValidationMessage(property.PropertyName)
+                        </div>
+                        break;
                 }
 
+                //if(property.PropertyName != "GameId")
+                //{
+
+                //  }
+
             }
+            <div class="form-group">
+                <div style="position:relative">
+                    <label>Bild</label>
+                    <a class='btn' href='javascript:;'>
+                        Wählen Sie bitte die Datei aus
+                        <input type="file"
+                               name="Image"
+                               size="40"
+                               style="position:absolute; z-index:2; top:0; left:0; filter: alpha(opacity=0); opacity:0; background-color: transparent; color:transparent"
+                               onchange='$("#upload-file-info").html($(this).val())' />
+                    </a>
+                    <span class="label label-info" id="upload-file-info"></span>
+                </div>
+                @if(Model.ImageData == null)
+                {
+                    <div class="form-control-static">Es gibt kein Bild</div>
+                }else
+                {
+                    <img class="img-thumbnail" width="150" height="150"
+                         src="@Url.Action("GetImag", "Game", new { Model.GameId })"/>
+                }
+
+            </div>
         </div>
         <div class="panel-footer">
-            <input type="submit" value="Speichern" class="btn btn-primary"/>
-            @Html.ActionLink("Alle Änderungen verwerfen und zurück zur Warenliste gehen", "Index", null, new { @class = "btn btn-default"}) 
+            <input type="submit" value="Speichern" class="btn btn-primary" />
+            @Html.ActionLink("Alle Änderungen verwerfen und zurück zur Warenliste gehen", "Index", null, new { @class = "btn btn-default" })
         </div>
     }
 </div>

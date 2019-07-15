@@ -18,7 +18,7 @@ namespace OnlineGameLaden.UnitTests
     public class AdminArieaTests
     {
         [TestMethod]
-        public void Index_Contains_All_Games()
+        public void IndexContainsAllGames()
         {
             // Arrange
             Mock<IGameRepository> mock = new Mock<IGameRepository>();

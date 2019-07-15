@@ -16,7 +16,7 @@ namespace OnlineGameLaden.UnitTests
     public class UnitTest1
     {
         [TestMethod]
-        public void Can_Paginate()
+        public void CanPaginate()
         {
             // Организация (arrange)
             Mock<IGameRepository> mock = new Mock<IGameRepository>();
@@ -42,7 +42,7 @@ namespace OnlineGameLaden.UnitTests
         }
 
         [TestMethod]
-        public void Can_Generate_Page_Links()
+        public void CanGeneratePageLinks()
         {
 
             // Arrange 
@@ -67,7 +67,7 @@ namespace OnlineGameLaden.UnitTests
         }
 
         [TestMethod]
-        public void Can_Send_Pagination_View_Model()
+        public void CanSendPaginationViewModel()
         {
             // Arrange
             Mock<IGameRepository> mock = new Mock<IGameRepository>();
@@ -118,7 +118,7 @@ namespace OnlineGameLaden.UnitTests
             Assert.IsTrue(result[1].Name == "Игра4" && result[1].Category == "Cat2");
         }
         [TestMethod]
-        public void Can_Create_Categories()
+        public void CanCreateCategories()
         {
             // Arrange - Erstellen neuen Repository
             Mock<IGameRepository> mock = new Mock<IGameRepository>();
@@ -142,7 +142,7 @@ namespace OnlineGameLaden.UnitTests
         }
 
         [TestMethod]
-        public void Indicates_Selected_Category()
+        public void IndicatesSelectedCategory()
         {
             // Arrange
             Mock<IGameRepository> mock = new Mock<IGameRepository>();
@@ -163,7 +163,7 @@ namespace OnlineGameLaden.UnitTests
         }
 
         [TestMethod]
-        public void Generate_Category_Specific_Game_Count()
+        public void GenerateCategorySpecificGameCount()
         {
             // Arrange
             Mock<IGameRepository> mock = new Mock<IGameRepository>();

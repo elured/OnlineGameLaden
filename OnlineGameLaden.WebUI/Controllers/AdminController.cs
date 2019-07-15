@@ -35,10 +35,16 @@ namespace OnlineGameLaden.WebUI.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(Game game)
+        public ActionResult Edit(Game game, HttpPostedFileBase image = null)
         {
             if (ModelState.IsValid)
             {
+                if(image != null)
+                {
+                    game.ImageMimeType = image.ContentType;
+                    game.ImageData = new byte[image.ContentLength];
+                    image.InputStream.Read(game.ImageData, 0, image.ContentLength);
+                }
                 repository.SaveProdukt(game);
                 TempData["message"] = $"Die Änderungen im Produkt {game.Name} wurden gespeichert";
                 return RedirectToAction("Index");
@@ -47,6 +53,7 @@ namespace OnlineGameLaden.WebUI.Controllers
                 //etwas ist schief gegangen
                 return View(game);
         }
+
         [HttpPost]
         public ActionResult Delete(int gameId)
         {

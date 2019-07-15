@@ -4,3 +4,8 @@
 
 /.vs/OnlineGameLaden/v15/Server/sqlite3/db.lock
 /.vs/OnlineGameLaden
+/OnlineGameLaden.WebUI/bin
+/OnlineGameLaden.WebUI/obj/Debug
+/OnlineGameLaden.Domain/bin/Debug
+/OnlineGameLaden.Domain/obj/Debug
+/OnlineGameLaden.UnitTests/obj/Debug

@@ -24,6 +24,8 @@ namespace OnlineGameLaden.Domain.Concrete
                 if(dbEntry != null)
                 {
                     dbEntry.Name = game.Name;
+                    dbEntry.ImageData = game.ImageData;
+                    dbEntry.ImageMimeType = game.ImageMimeType;
                     dbEntry.Description = game.Description;
                     dbEntry.Price = game.Price;
                     dbEntry.Category = game.Category;
