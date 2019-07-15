@@ -49,8 +49,5 @@ namespace OnlineGameLaden.UnitTests
             Assert.IsFalse(((ViewResult)result).ViewData.ModelState.IsValid);
         }
 
-        // Arrange
-        // Action
-        // Assert
     }
 }

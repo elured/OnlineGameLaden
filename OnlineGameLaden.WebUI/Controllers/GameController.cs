@@ -48,10 +48,10 @@ namespace OnlineGameLaden.WebUI.Controllers
             return View(model);
         }
 
-        public FileContentResult getImage(int gameId)
+        public FileContentResult GetImage(int gameId)
         {
             Game game = repository.Games.FirstOrDefault(i => i.GameId == gameId);
-            if (game == null)
+            if (game != null)
                 return File(game.ImageData, game.ImageMimeType);
             else
                 return null;
