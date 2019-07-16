@@ -42,7 +42,7 @@
     </tbody>
     <tfoot>
         <tr>
-            <td colspan="3" class="text-right">Итого:</td>
+            <td colspan="3" class="text-right">Summe:</td>
             <td class="text-right">
                 @Model.Cart.ComputeTotalValue().ToString("# Euro")
             </td>
@@ -52,5 +52,5 @@
 
 <div class="text-center">
     <a class="btn btn-primary" href="@Model.ReturnUrl">Weiter einkaufen</a>
-    @Html.ActionLink("Bestellung aufgeben", "Checkout", null, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Jetzt bestellen", "Checkout", null, new { @class = "btn btn-primary" })
 </div>
