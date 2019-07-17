@@ -2,7 +2,7 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/.vs/OnlineGameLaden/v15/Server/sqlite3/db.lock
+/.vs/RubiksCubeStore/v15/Server/sqlite3/db.lock
 #/.vs/OnlineGameLaden
 #/OnlineGameLaden.WebUI/bin
 #/OnlineGameLaden.WebUI/obj/Debug
@@ -11,9 +11,18 @@
 #/OnlineGameLaden.UnitTests/obj/Debug
 #/OnlineGameLaden.UnitTests/bin/Debug
 /.vs/
-/OnlineGameLaden.Domain/obj/Debug
+/RubiksCubeStore.Domain/obj/Debug
+/RubiksCubeStore.Domain/bin/Debug
+/RubiksCubeStore.WebUI/bin
+/RubiksCubeStore.WebUI/obj/Debug
+/RubiksCubeStore.WebUI/bin/App_Data/CubeStore.mdf
+/RubiksCubeStore.WebUI/bin/App_Data/CubeStore_log.ldf
+/RubiksCubeStore.UnitTests/obj/Debug
+/RubiksCubeStore.UnitTests/bin/Debug
 /OnlineGameLaden.Domain/bin/Debug
+/OnlineGameLaden.Domain/obj/Debug
+/OnlineGameLaden.UnitTests/obj/Debug
 /OnlineGameLaden.WebUI/bin
 /OnlineGameLaden.WebUI/obj/Debug
-/OnlineGameLaden.UnitTests/obj/Debug
-/OnlineGameLaden.UnitTests/bin/Debug
+/OnlineGameLaden.WebUI/App_Data/CubeStore.mdf
+/OnlineGameLaden.WebUI/App_Data/CubeStore_log.ldf

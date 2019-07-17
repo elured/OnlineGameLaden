@@ -281,7 +281,7 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\OnlineGameLaden.Domain\RubiksCubeStore.Domain.csproj">
+    <ProjectReference Include="..\RubiksCubeStore.Domain\RubiksCubeStore.Domain.csproj">
       <Project>{a1854b98-2783-4197-be6b-115dc363a1aa}</Project>
       <Name>RubiksCubeStore.Domain</Name>
     </ProjectReference>
