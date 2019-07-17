@@ -1,7 +1,7 @@
-[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(OnlineGameLaden.WebUI.App_Start.NinjectWebCommon), "Start")]
-[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(OnlineGameLaden.WebUI.App_Start.NinjectWebCommon), "Stop")]
+[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(RubiksCubeStore.WebUI.App_Start.NinjectWebCommon), "Start")]
+[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(RubiksCubeStore.WebUI.App_Start.NinjectWebCommon), "Stop")]
 
-namespace OnlineGameLaden.WebUI.App_Start
+namespace RubiksCubeStore.WebUI.App_Start
 {
     using System;
     using System.Web;

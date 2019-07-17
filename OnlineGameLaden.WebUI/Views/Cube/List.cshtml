@@ -1,0 +1,16 @@
+﻿@using RubiksCubeStore.WebUI.Models
+@using RubiksCubeStore.WebUI.HtmlHelpers
+@model CubesListViewModel
+
+@{
+    ViewBag.Title = "Waren";
+}
+
+@foreach (var p in @Model.Cubes)
+{
+    @Html.Partial("CubeSummary", p)
+}
+
+<div class="btn-group pull-right">
+    @Html.PageLinks(Model.PagingInfo, x => Url.Action("List", new { page = x, category = Model.CurrentCategory }))
+</div>

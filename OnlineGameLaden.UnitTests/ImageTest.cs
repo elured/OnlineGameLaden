@@ -4,11 +4,11 @@ using System.Linq;
 using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using OnlineGameLaden.Domain.Abstract;
-using OnlineGameLaden.Domain.Entities;
-using OnlineGameLaden.WebUI.Controllers;
+using RubiksCubeStore.Domain.Abstract;
+using RubiksCubeStore.Domain.Entities;
+using RubiksCubeStore.WebUI.Controllers;
 
-namespace OnlineGameLaden.UnitTests
+namespace RubiksCubeStore.UnitTests
 {
     [TestClass]
     public class ImageTest
@@ -17,27 +17,27 @@ namespace OnlineGameLaden.UnitTests
         public void CanRetrieveImageData()
         {
             // Arrange
-            Game game = new Game
+            Cube cube = new Cube
             {
-                GameId = 2,
+                CubeId = 2,
                 Name = "Puzzle2",
                 ImageData = new byte[] { },
                 ImageMimeType = "image/png"
             };
-            Mock<IGameRepository> mock = new Mock<IGameRepository>();
-            mock.Setup(i => i.Games).Returns(new List<Game>{
-                new Game{
-                        GameId = 1,
+            Mock<ICubeRepository> mock = new Mock<ICubeRepository>();
+            mock.Setup(i => i.Cubes).Returns(new List<Cube>{
+                new Cube{
+                        CubeId = 1,
                         Name = "Puzzle1"
                 },
-                game,
-                new Game
+                cube,
+                new Cube
                 {
-                    GameId = 3,
+                    CubeId = 3,
                     Name = "Puzzle3"
                 }
             }.AsQueryable());
-            GameController controller = new GameController(mock.Object);
+            CubeController controller = new CubeController(mock.Object);
 
             // Action
             ActionResult result = controller.GetImage(2);
@@ -45,25 +45,25 @@ namespace OnlineGameLaden.UnitTests
             // Assert
             Assert.IsNotNull(result);
             Assert.IsInstanceOfType(result, typeof(FileResult));
-            Assert.AreEqual(game.ImageMimeType, ((FileResult)result).ContentType);
+            Assert.AreEqual(cube.ImageMimeType, ((FileResult)result).ContentType);
         }
         [TestMethod]
         public void CannotRetrieveImageDataForInvalidID()
         {
             // Arrange
-            Mock<IGameRepository> mock = new Mock<IGameRepository>();
-            mock.Setup(i => i.Games).Returns(new List<Game>{
-                new Game{
-                        GameId = 1,
+            Mock<ICubeRepository> mock = new Mock<ICubeRepository>();
+            mock.Setup(i => i.Cubes).Returns(new List<Cube>{
+                new Cube{
+                        CubeId = 1,
                         Name = "Puzzle1"
                 },
-                new Game
+                new Cube
                 {
-                    GameId = 2,
+                    CubeId = 2,
                     Name = "Puzzle2"
                 }
             }.AsQueryable);
-            GameController controller = new GameController(mock.Object);
+            CubeController controller = new CubeController(mock.Object);
 
             // Action
             ActionResult result = controller.GetImage(10);

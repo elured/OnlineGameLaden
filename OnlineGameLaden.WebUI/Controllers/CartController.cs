@@ -1,19 +1,19 @@
-﻿using OnlineGameLaden.Domain.Abstract;
-using OnlineGameLaden.Domain.Entities;
+﻿using RubiksCubeStore.Domain.Abstract;
+using RubiksCubeStore.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace OnlineGameLaden.WebUI.Controllers
+namespace RubiksCubeStore.WebUI.Controllers
 {
     public class CartController : Controller
     {
-        private IGameRepository repository;
+        private ICubeRepository repository;
         private IOrderProcessor orderProcessor;
 
-        public CartController(IGameRepository repo, IOrderProcessor processor)
+        public CartController(ICubeRepository repo, IOrderProcessor processor)
         {
             repository = repo;
             orderProcessor = processor;
@@ -27,26 +27,26 @@ namespace OnlineGameLaden.WebUI.Controllers
             });
         }
 
-        public RedirectToRouteResult AddToCart(Cart cart, int gameId, string returnUrl)
+        public RedirectToRouteResult AddToCart(Cart cart, int cubeId, string returnUrl)
         {
-            Game game = repository.Games
-                .FirstOrDefault(g => g.GameId == gameId);
+            Cube cube = repository.Cubes
+                .FirstOrDefault(g => g.CubeId == cubeId);
 
-            if (game != null)
+            if (cube != null)
             {
-                cart.AddItem(game, 1);
+                cart.AddItem(cube, 1);
             }
             return RedirectToAction("Index", new { returnUrl });
         }
 
-        public RedirectToRouteResult RemoveFromCart(Cart cart, int gameId, string returnUrl)
+        public RedirectToRouteResult RemoveFromCart(Cart cart, int cubeId, string returnUrl)
         {
-            Game game = repository.Games
-                .FirstOrDefault(g => g.GameId == gameId);
+            Cube cube = repository.Cubes
+                .FirstOrDefault(g => g.CubeId == cubeId);
 
-            if (game != null)
+            if (cube != null)
             {
-                cart.RemoveLine(game);
+                cart.RemoveLine(cube);
             }
             return RedirectToAction("Index", new { returnUrl });
         }

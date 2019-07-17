@@ -1,12 +1,12 @@
-﻿using OnlineGameLaden.WebUI.Models;
-using OnlineGameLaden.WebUI.Util.Abstract;
+﻿using RubiksCubeStore.WebUI.Models;
+using RubiksCubeStore.WebUI.Util.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace OnlineGameLaden.WebUI.Controllers
+namespace RubiksCubeStore.WebUI.Controllers
 {
     public class AccountController : Controller
     {

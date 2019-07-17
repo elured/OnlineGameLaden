@@ -1,8 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using OnlineGameLaden.WebUI.Controllers;
-using OnlineGameLaden.WebUI.Models;
-using OnlineGameLaden.WebUI.Util.Abstract;
+using RubiksCubeStore.WebUI.Controllers;
+using RubiksCubeStore.WebUI.Models;
+using RubiksCubeStore.WebUI.Util.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
-namespace OnlineGameLaden.UnitTests
+namespace RubiksCubeStore.UnitTests
 {
     [TestClass]
     public class AdminSecurityTests

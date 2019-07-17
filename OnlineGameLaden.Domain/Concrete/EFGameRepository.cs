@@ -1,45 +1,45 @@
-﻿using OnlineGameLaden.Domain.Abstract;
-using OnlineGameLaden.Domain.Entities;
+﻿using RubiksCubeStore.Domain.Abstract;
+using RubiksCubeStore.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OnlineGameLaden.Domain.Concrete
+namespace RubiksCubeStore.Domain.Concrete
 {
-    public class EFGameRepository : IGameRepository
+    public class EFCubeRepository : ICubeRepository
     {
         EFDbContext context = new EFDbContext();
 
-        public IEnumerable<Game> Games => context.Games;
+        public IEnumerable<Cube> Cubes => context.Cubes;
 
-        public void SaveProdukt(Game game)
+        public void SaveProdukt(Cube cube)
         {
-            if (game.GameId == 0)
-                context.Games.Add(game);
+            if (cube.CubeId == 0)
+                context.Cubes.Add(cube);
             else
             {
-                Game dbEntry = context.Games.Find(game.GameId);
+                Cube dbEntry = context.Cubes.Find(cube.CubeId);
                 if(dbEntry != null)
                 {
-                    dbEntry.Name = game.Name;
-                    dbEntry.ImageData = game.ImageData;
-                    dbEntry.ImageMimeType = game.ImageMimeType;
-                    dbEntry.Description = game.Description;
-                    dbEntry.Price = game.Price;
-                    dbEntry.Category = game.Category;
+                    dbEntry.Name = cube.Name;
+                    dbEntry.ImageData = cube.ImageData;
+                    dbEntry.ImageMimeType = cube.ImageMimeType;
+                    dbEntry.Description = cube.Description;
+                    dbEntry.Price = cube.Price;
+                    dbEntry.Category = cube.Category;
                 }
             }
             context.SaveChanges();
         }
 
-        public Game DeleteProdukt(int gameId)
+        public Cube DeleteProdukt(int cubeId)
         {
-            Game dbEntry = context.Games.Find(gameId);
+            Cube dbEntry = context.Cubes.Find(cubeId);
             if(dbEntry != null)
             {
-                context.Games.Remove(dbEntry);
+                context.Cubes.Remove(dbEntry);
                 context.SaveChanges();
             }
             return dbEntry;

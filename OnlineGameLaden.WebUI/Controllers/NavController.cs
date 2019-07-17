@@ -1,17 +1,17 @@
-﻿using OnlineGameLaden.Domain.Abstract;
+﻿using RubiksCubeStore.Domain.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace OnlineGameLaden.WebUI.Controllers
+namespace RubiksCubeStore.WebUI.Controllers
 {
     public class NavController : Controller
     {
-        private IGameRepository repository;
+        private ICubeRepository repository;
 
-        public NavController(IGameRepository repo)
+        public NavController(ICubeRepository repo)
         {
             repository = repo;
         }
@@ -20,8 +20,8 @@ namespace OnlineGameLaden.WebUI.Controllers
         {
             ViewBag.SelectedCategory = category;
 
-            IEnumerable<string> categories = repository.Games
-                .Select(game => game.Category)
+            IEnumerable<string> categories = repository.Cubes
+                .Select(cube => cube.Category)
                 .Distinct()
                 .OrderBy(x => x);
 

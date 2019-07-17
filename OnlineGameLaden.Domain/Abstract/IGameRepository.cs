@@ -1,16 +1,16 @@
-﻿using OnlineGameLaden.Domain.Entities;
+﻿using RubiksCubeStore.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OnlineGameLaden.Domain.Abstract
+namespace RubiksCubeStore.Domain.Abstract
 {
-    public interface IGameRepository
+    public interface ICubeRepository
     {
-        IEnumerable<Game> Games { get; }
-        void SaveProdukt(Game game);
-        Game DeleteProdukt(int gameId);
+        IEnumerable<Cube> Cubes { get; }
+        void SaveProdukt(Cube cube);
+        Cube DeleteProdukt(int cubeId);
     }
 }

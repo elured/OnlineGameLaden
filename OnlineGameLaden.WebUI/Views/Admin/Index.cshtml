@@ -1,4 +1,4 @@
-﻿@model IEnumerable<OnlineGameLaden.Domain.Entities.Game>
+﻿@model IEnumerable<RubiksCubeStore.Domain.Entities.Cube>
 
 @{
     ViewBag.Title = "Adminpanel: Liste der Waren";
@@ -20,13 +20,13 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    <td class="text-right">@item.GameId</td>
-                    <td>@Html.ActionLink(item.Name, "Edit", new { item.GameId })</td>
+                    <td class="text-right">@item.CubeId</td>
+                    <td>@Html.ActionLink(item.Name, "Edit", new { item.CubeId })</td>
                     <td class="text-right">@item.Price.ToString("# Euro")</td>
                     <td class="text-center">
                         @using (Html.BeginForm("Delete", "Admin"))
                         {
-                            @Html.Hidden("GameId", item.GameId)
+                            @Html.Hidden("CubeId", item.CubeId)
                             <input type="submit"
                                    class="btn btn-default btn-xs"
                                    value="Löschen" />

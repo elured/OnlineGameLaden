@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace OnlineGameLaden.WebUI
+namespace RubiksCubeStore.WebUI
 {
     public class RouteConfig
     {
@@ -17,7 +17,7 @@ namespace OnlineGameLaden.WebUI
                  "",
                  new
                  {
-                     controller = "Game",
+                     controller = "Cube",
                      action = "List",
                      category = (string)null,
                      page = 1
@@ -27,18 +27,18 @@ namespace OnlineGameLaden.WebUI
             routes.MapRoute(
                 name: null,
                 url: "Page{page}",
-                defaults: new { controller = "Game", action = "List", category = (string)null },
+                defaults: new { controller = "Cube", action = "List", category = (string)null },
                 constraints: new { page = @"\d+" }
             );
 
             routes.MapRoute(null,
                 "{category}",
-                new { controller = "Game", action = "List", page = 1 }
+                new { controller = "Cube", action = "List", page = 1 }
             );
 
             routes.MapRoute(null,
                 "{category}/Page{page}",
-                new { controller = "Game", action = "List" },
+                new { controller = "Cube", action = "List" },
                 new { page = @"\d+" }
             );
 

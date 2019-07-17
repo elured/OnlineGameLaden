@@ -4,13 +4,13 @@ using System.Linq;
 using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using OnlineGameLaden.Domain.Abstract;
-using OnlineGameLaden.Domain.Entities;
-using OnlineGameLaden.WebUI.Controllers;
-using OnlineGameLaden.WebUI.HtmlHelpers;
-using OnlineGameLaden.WebUI.Models;
+using RubiksCubeStore.Domain.Abstract;
+using RubiksCubeStore.Domain.Entities;
+using RubiksCubeStore.WebUI.Controllers;
+using RubiksCubeStore.WebUI.HtmlHelpers;
+using RubiksCubeStore.WebUI.Models;
 
-namespace OnlineGameLaden.UnitTests
+namespace RubiksCubeStore.UnitTests
 {
     [TestClass]
     public class UnitTest1
@@ -19,26 +19,26 @@ namespace OnlineGameLaden.UnitTests
         public void CanPaginate()
         {
             // Организация (arrange)
-            Mock<IGameRepository> mock = new Mock<IGameRepository>();
-            mock.Setup(m => m.Games).Returns(new List<Game>
+            Mock<ICubeRepository> mock = new Mock<ICubeRepository>();
+            mock.Setup(m => m.Cubes).Returns(new List<Cube>
             {
-                new Game { GameId = 1, Name = "Игра1"},
-                new Game { GameId = 2, Name = "Игра2"},
-                new Game { GameId = 3, Name = "Игра3"},
-                new Game { GameId = 4, Name = "Игра4"},
-                new Game { GameId = 5, Name = "Игра5"}
+                new Cube { CubeId = 1, Name = "Cube1"},
+                new Cube { CubeId = 2, Name = "Cube2"},
+                new Cube { CubeId = 3, Name = "Cube3"},
+                new Cube { CubeId = 4, Name = "Cube4"},
+                new Cube { CubeId = 5, Name = "Cube5"}
             });
-            GameController controller = new GameController(mock.Object);
+            CubeController controller = new CubeController(mock.Object);
             controller.pageSize = 3;
 
             // Действие (act)
-            GamesListViewModel result = (GamesListViewModel)controller.List(null, 2).Model;
+            CubesListViewModel result = (CubesListViewModel)controller.List(null, 2).Model;
 
             // Утверждение
-            List<Game> games = result.Games.ToList();
-            Assert.IsTrue(games.Count == 2);
-            Assert.AreEqual(games[0].Name, "Игра4");
-            Assert.AreEqual(games[1].Name, "Игра5");
+            List<Cube> cubes = result.Cubes.ToList();
+            Assert.IsTrue(cubes.Count == 2);
+            Assert.AreEqual(cubes[0].Name, "Cube4");
+            Assert.AreEqual(cubes[1].Name, "Cube5");
         }
 
         [TestMethod]
@@ -70,20 +70,20 @@ namespace OnlineGameLaden.UnitTests
         public void CanSendPaginationViewModel()
         {
             // Arrange
-            Mock<IGameRepository> mock = new Mock<IGameRepository>();
-            mock.Setup(m => m.Games).Returns(new List<Game>
+            Mock<ICubeRepository> mock = new Mock<ICubeRepository>();
+            mock.Setup(m => m.Cubes).Returns(new List<Cube>
             {
-                new Game { GameId = 1, Name = "Игра1"},
-                new Game { GameId = 2, Name = "Игра2"},
-                new Game { GameId = 3, Name = "Игра3"},
-                new Game { GameId = 4, Name = "Игра4"},
-                new Game { GameId = 5, Name = "Игра5"}
+                new Cube { CubeId = 1, Name = "Cube1"},
+                new Cube { CubeId = 2, Name = "Cube2"},
+                new Cube { CubeId = 3, Name = "Cube3"},
+                new Cube { CubeId = 4, Name = "Cube4"},
+                new Cube { CubeId = 5, Name = "Cube5"}
             });
-            GameController controller = new GameController(mock.Object);
+            CubeController controller = new CubeController(mock.Object);
             controller.pageSize = 3;
 
             // Act
-            GamesListViewModel result = (GamesListViewModel)controller.List(null, 2).Model;
+            CubesListViewModel result = (CubesListViewModel)controller.List(null, 2).Model;
 
             // Assert
             PagingInfo pageInfo = result.PagingInfo;
@@ -93,40 +93,40 @@ namespace OnlineGameLaden.UnitTests
             Assert.AreEqual(pageInfo.TotalPages, 2);
         }
         [TestMethod]
-        public void Can_Filter_Games()
+        public void Can_Filter_Cubes()
         {
             // Arrange
-            Mock<IGameRepository> mock = new Mock<IGameRepository>();
-            mock.Setup(m => m.Games).Returns(new List<Game>
+            Mock<ICubeRepository> mock = new Mock<ICubeRepository>();
+            mock.Setup(m => m.Cubes).Returns(new List<Cube>
             {
-                new Game { GameId = 1, Name = "Игра1", Category="Cat1"},
-                new Game { GameId = 2, Name = "Игра2", Category="Cat2"},
-                new Game { GameId = 3, Name = "Игра3", Category="Cat1"},
-                new Game { GameId = 4, Name = "Игра4", Category="Cat2"},
-                new Game { GameId = 5, Name = "Игра5", Category="Cat3"}
+                new Cube { CubeId = 1, Name = "Cube1", Category="Cat1"},
+                new Cube { CubeId = 2, Name = "Cube2", Category="Cat2"},
+                new Cube { CubeId = 3, Name = "Cube3", Category="Cat1"},
+                new Cube { CubeId = 4, Name = "Cube4", Category="Cat2"},
+                new Cube { CubeId = 5, Name = "Cube5", Category="Cat3"}
             });
-            GameController controller = new GameController(mock.Object);
+            CubeController controller = new CubeController(mock.Object);
             controller.pageSize = 3;
 
             // Action
-            List<Game> result = ((GamesListViewModel)controller.List("Cat2", 1).Model)
-                .Games.ToList();
+            List<Cube> result = ((CubesListViewModel)controller.List("Cat2", 1).Model)
+                .Cubes.ToList();
 
             // Assert
             Assert.AreEqual(result.Count(), 2);
-            Assert.IsTrue(result[0].Name == "Игра2" && result[0].Category == "Cat2");
-            Assert.IsTrue(result[1].Name == "Игра4" && result[1].Category == "Cat2");
+            Assert.IsTrue(result[0].Name == "Cube2" && result[0].Category == "Cat2");
+            Assert.IsTrue(result[1].Name == "Cube4" && result[1].Category == "Cat2");
         }
         [TestMethod]
         public void CanCreateCategories()
         {
             // Arrange - Erstellen neuen Repository
-            Mock<IGameRepository> mock = new Mock<IGameRepository>();
-            mock.Setup(m => m.Games).Returns(new List<Game> {
-                new Game { GameId = 1, Name = "Игра1", Category="Симулятор"},
-                new Game { GameId = 2, Name = "Игра2", Category="Симулятор"},
-                new Game { GameId = 3, Name = "Игра3", Category="Шутер"},
-                new Game { GameId = 4, Name = "Игра4", Category="RPG"},
+            Mock<ICubeRepository> mock = new Mock<ICubeRepository>();
+            mock.Setup(m => m.Cubes).Returns(new List<Cube> {
+                new Cube { CubeId = 1, Name = "Cube1", Category="Rubik's Cube Variations"},
+                new Cube { CubeId = 2, Name = "Cube2", Category="Rubik's Cube Variations"},
+                new Cube { CubeId = 3, Name = "Cube3", Category="Sonstige"},
+                new Cube { CubeId = 4, Name = "Cube4", Category="Rubik's Cube"},
             });
 
             NavController target = new NavController(mock.Object);
@@ -136,24 +136,24 @@ namespace OnlineGameLaden.UnitTests
 
             // Assert
             Assert.AreEqual(results.Count(), 3);
-            Assert.AreEqual(results[0], "RPG");
-            Assert.AreEqual(results[1], "Симулятор");
-            Assert.AreEqual(results[2], "Шутер");
+            Assert.AreEqual(results[0], "Rubik's Cube");
+            Assert.AreEqual(results[1], "Rubik's Cube Variations");
+            Assert.AreEqual(results[2], "Sonstige");
         }
 
         [TestMethod]
         public void IndicatesSelectedCategory()
         {
             // Arrange
-            Mock<IGameRepository> mock = new Mock<IGameRepository>();
-            mock.Setup(m => m.Games).Returns(new Game[] {
-                new Game { GameId = 1, Name = "Игра1", Category="Симулятор"},
-                new Game { GameId = 2, Name = "Игра2", Category="Шутер"}
+            Mock<ICubeRepository> mock = new Mock<ICubeRepository>();
+            mock.Setup(m => m.Cubes).Returns(new Cube[] {
+                new Cube { CubeId = 1, Name = "Cube1", Category="Rubik's Cube Variations"},
+                new Cube { CubeId = 2, Name = "Cube2", Category="Sonstige"}
             });
 
             NavController target = new NavController(mock.Object);
 
-            string categoryToSelect = "Шутер";
+            string categoryToSelect = "Sonstige";
 
             // Action
             string result = target.Menu(categoryToSelect).ViewBag.SelectedCategory;
@@ -163,26 +163,26 @@ namespace OnlineGameLaden.UnitTests
         }
 
         [TestMethod]
-        public void GenerateCategorySpecificGameCount()
+        public void GenerateCategorySpecificCubeCount()
         {
             // Arrange
-            Mock<IGameRepository> mock = new Mock<IGameRepository>();
-            mock.Setup(m => m.Games).Returns(new List<Game>
+            Mock<ICubeRepository> mock = new Mock<ICubeRepository>();
+            mock.Setup(m => m.Cubes).Returns(new List<Cube>
             {
-                new Game { GameId = 1, Name = "Игра1", Category="Cat1"},
-                new Game { GameId = 2, Name = "Игра2", Category="Cat2"},
-                new Game { GameId = 3, Name = "Игра3", Category="Cat1"},
-                new Game { GameId = 4, Name = "Игра4", Category="Cat2"},
-                new Game { GameId = 5, Name = "Игра5", Category="Cat3"}
+                new Cube { CubeId = 1, Name = "Cube1", Category="Cat1"},
+                new Cube { CubeId = 2, Name = "Cube2", Category="Cat2"},
+                new Cube { CubeId = 3, Name = "Cube3", Category="Cat1"},
+                new Cube { CubeId = 4, Name = "Cube4", Category="Cat2"},
+                new Cube { CubeId = 5, Name = "Cube5", Category="Cat3"}
             });
-            GameController controller = new GameController(mock.Object);
+            CubeController controller = new CubeController(mock.Object);
             controller.pageSize = 3;
 
             // Action
-            int res1 = ((GamesListViewModel)controller.List("Cat1").Model).PagingInfo.TotalItems;
-            int res2 = ((GamesListViewModel)controller.List("Cat2").Model).PagingInfo.TotalItems;
-            int res3 = ((GamesListViewModel)controller.List("Cat3").Model).PagingInfo.TotalItems;
-            int resAll = ((GamesListViewModel)controller.List(null).Model).PagingInfo.TotalItems;
+            int res1 = ((CubesListViewModel)controller.List("Cat1").Model).PagingInfo.TotalItems;
+            int res2 = ((CubesListViewModel)controller.List("Cat2").Model).PagingInfo.TotalItems;
+            int res3 = ((CubesListViewModel)controller.List("Cat3").Model).PagingInfo.TotalItems;
+            int resAll = ((CubesListViewModel)controller.List(null).Model).PagingInfo.TotalItems;
 
             // Assert
             Assert.AreEqual(res1, 2);

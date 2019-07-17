@@ -1,10 +1,10 @@
-﻿using OnlineGameLaden.Domain.Entities;
+﻿using RubiksCubeStore.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 
-namespace OnlineGameLaden.WebUI.Util.Binders
+namespace RubiksCubeStore.WebUI.Util.Binders
 {
     public class CartModelBinder : IModelBinder
     {

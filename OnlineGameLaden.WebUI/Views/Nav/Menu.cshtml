@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<string>
 
-@Html.ActionLink("Startseite", "List", "Game", null,
+@Html.ActionLink("Startseite", "List", "Cube", null,
     new { @class = "btn btn-block btn-default btn-lg" })
 
 @foreach (var link in Model)
 {
     @Html.RouteLink(link, new
     {
-        controller = "Game",
+        controller = "Cube",
         action = "List",
         category = link,
         page = 1

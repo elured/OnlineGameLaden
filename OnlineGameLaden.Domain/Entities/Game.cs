@@ -6,12 +6,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
-namespace OnlineGameLaden.Domain.Entities
+namespace RubiksCubeStore.Domain.Entities
 {
-    public class Game
+    public class Cube
     {
         [HiddenInput(DisplayValue = false)]
-        public int GameId { get; set; }
+        public int CubeId { get; set; }
 
         [Display(Name = "Name")]
         [Required(ErrorMessage = "Geben Sie bitte Produktname")]

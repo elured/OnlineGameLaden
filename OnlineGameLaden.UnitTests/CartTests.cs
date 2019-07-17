@@ -2,14 +2,14 @@
 using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using OnlineGameLaden.Domain.Entities;
+using RubiksCubeStore.Domain.Entities;
 using System.Linq;
-using OnlineGameLaden.Domain.Abstract;
+using RubiksCubeStore.Domain.Abstract;
 using Moq;
-using OnlineGameLaden.WebUI.Controllers;
+using RubiksCubeStore.WebUI.Controllers;
 using System.Web.Mvc;
 
-namespace OnlineGameLaden.UnitTests
+namespace RubiksCubeStore.UnitTests
 {
     [TestClass]
     public class CartTests
@@ -18,38 +18,38 @@ namespace OnlineGameLaden.UnitTests
         public void CanAddNewLines()
         {
             // Arrange
-            Game game1 = new Game { GameId = 1, Name = "Игра1" };
-            Game game2 = new Game { GameId = 2, Name = "Игра2" };
+            Cube cube1 = new Cube { CubeId = 1, Name = "Cube1" };
+            Cube cube2 = new Cube { CubeId = 2, Name = "Cube2" };
 
             // Arrange
             Cart cart = new Cart();
 
             // Action
-            cart.AddItem(game1, 1);
-            cart.AddItem(game2, 1);
+            cart.AddItem(cube1, 1);
+            cart.AddItem(cube2, 1);
             List<CartLine> results = cart.Lines.ToList();
 
             // Assert
             Assert.AreEqual(results.Count(), 2);
-            Assert.AreEqual(results[0].Game, game1);
-            Assert.AreEqual(results[1].Game, game2);
+            Assert.AreEqual(results[0].Cube, cube1);
+            Assert.AreEqual(results[1].Cube, cube2);
         }
 
         [TestMethod]
         public void CanAddQuantityForExistingLines()
         {
             // Arrange
-            Game game1 = new Game { GameId = 1, Name = "Игра1" };
-            Game game2 = new Game { GameId = 2, Name = "Игра2" };
+            Cube cube1 = new Cube { CubeId = 1, Name = "Cube1" };
+            Cube cube2 = new Cube { CubeId = 2, Name = "Cube2" };
 
             // Arrange
             Cart cart = new Cart();
 
             // Действие
-            cart.AddItem(game1, 1);
-            cart.AddItem(game2, 1);
-            cart.AddItem(game1, 5);
-            List<CartLine> results = cart.Lines.OrderBy(c => c.Game.GameId).ToList();
+            cart.AddItem(cube1, 1);
+            cart.AddItem(cube2, 1);
+            cart.AddItem(cube1, 5);
+            List<CartLine> results = cart.Lines.OrderBy(c => c.Cube.CubeId).ToList();
 
             // Assert
             Assert.AreEqual(results.Count(), 2);
@@ -60,24 +60,24 @@ namespace OnlineGameLaden.UnitTests
         public void CanRemoveLine()
         {
             // Arrange
-            Game game1 = new Game { GameId = 1, Name = "Игра1" };
-            Game game2 = new Game { GameId = 2, Name = "Игра2" };
-            Game game3 = new Game { GameId = 3, Name = "Игра3" };
+            Cube cube1 = new Cube { CubeId = 1, Name = "Cube1" };
+            Cube cube2 = new Cube { CubeId = 2, Name = "Cube2" };
+            Cube cube3 = new Cube { CubeId = 3, Name = "Cube3" };
 
             // Arrange
             Cart cart = new Cart();
 
             // Action
-            cart.AddItem(game1, 1);
-            cart.AddItem(game2, 4);
-            cart.AddItem(game3, 2);
-            cart.AddItem(game2, 1);
+            cart.AddItem(cube1, 1);
+            cart.AddItem(cube2, 4);
+            cart.AddItem(cube3, 2);
+            cart.AddItem(cube2, 1);
 
             // Action
-            cart.RemoveLine(game2);
+            cart.RemoveLine(cube2);
 
             // Assert
-            Assert.AreEqual(cart.Lines.Where(c => c.Game == game2).Count(), 0);
+            Assert.AreEqual(cart.Lines.Where(c => c.Cube == cube2).Count(), 0);
             Assert.AreEqual(cart.Lines.Count(), 2);
         }
 
@@ -85,16 +85,16 @@ namespace OnlineGameLaden.UnitTests
         public void CalculateCartTotal()
         {
             // Arrange
-            Game game1 = new Game { GameId = 1, Name = "Игра1", Price = 100 };
-            Game game2 = new Game { GameId = 2, Name = "Игра2", Price = 55 };
+            Cube cube1 = new Cube { CubeId = 1, Name = "Cube1", Price = 100 };
+            Cube cube2 = new Cube { CubeId = 2, Name = "Cube2", Price = 55 };
 
             // Arrange
             Cart cart = new Cart();
 
             // Action
-            cart.AddItem(game1, 1);
-            cart.AddItem(game2, 1);
-            cart.AddItem(game1, 5);
+            cart.AddItem(cube1, 1);
+            cart.AddItem(cube2, 1);
+            cart.AddItem(cube1, 5);
             decimal result = cart.ComputeTotalValue();
 
             // Assert
@@ -105,16 +105,16 @@ namespace OnlineGameLaden.UnitTests
         public void CanClearContents()
         {
             // Arrange
-            Game game1 = new Game { GameId = 1, Name = "Игра1", Price = 100 };
-            Game game2 = new Game { GameId = 2, Name = "Игра2", Price = 55 };
+            Cube cube1 = new Cube { CubeId = 1, Name = "Cube1", Price = 100 };
+            Cube cube2 = new Cube { CubeId = 2, Name = "Cube2", Price = 55 };
 
             // Arrange
             Cart cart = new Cart();
 
             // Action
-            cart.AddItem(game1, 1);
-            cart.AddItem(game2, 1);
-            cart.AddItem(game1, 5);
+            cart.AddItem(cube1, 1);
+            cart.AddItem(cube2, 1);
+            cart.AddItem(cube1, 5);
             cart.Clear();
 
             // Assert
@@ -128,9 +128,9 @@ namespace OnlineGameLaden.UnitTests
         public void CanAddToCart()
         {
             // Организация - создание имитированного хранилища
-            Mock<IGameRepository> mock = new Mock<IGameRepository>();
-            mock.Setup(m => m.Games).Returns(new List<Game> {
-        new Game {GameId = 1, Name = "Игра1", Category = "Кат1"},
+            Mock<ICubeRepository> mock = new Mock<ICubeRepository>();
+            mock.Setup(m => m.Cubes).Returns(new List<Cube> {
+        new Cube {CubeId = 1, Name = "Cube1", Category = "Cat1"},
     }.AsQueryable());
 
             // Организация - создание корзины
@@ -144,19 +144,19 @@ namespace OnlineGameLaden.UnitTests
 
             // Утверждение
             Assert.AreEqual(cart.Lines.Count(), 1);
-            Assert.AreEqual(cart.Lines.ToList()[0].Game.GameId, 1);
+            Assert.AreEqual(cart.Lines.ToList()[0].Cube.CubeId, 1);
         }
 
         /// <summary>
         /// После добавления игры в корзину, должно быть перенаправление на страницу корзины
         /// </summary>
         [TestMethod]
-        public void AddingGameToCartGoesToCartScreen()
+        public void AddingCubeToCartGoesToCartScreen()
         {
             // Организация - создание имитированного хранилища
-            Mock<IGameRepository> mock = new Mock<IGameRepository>();
-            mock.Setup(m => m.Games).Returns(new List<Game> {
-        new Game {GameId = 1, Name = "Игра1", Category = "Кат1"},
+            Mock<ICubeRepository> mock = new Mock<ICubeRepository>();
+            mock.Setup(m => m.Cubes).Returns(new List<Cube> {
+        new Cube {CubeId = 1, Name = "Cube1", Category = "Cat1"},
     }.AsQueryable());
 
             // Организация - создание корзины
@@ -227,7 +227,7 @@ namespace OnlineGameLaden.UnitTests
 
             // Организация — создание корзины с элементом
             Cart cart = new Cart();
-            cart.AddItem(new Game(), 1);
+            cart.AddItem(new Cube(), 1);
 
             // Организация — создание контроллера
             CartController controller = new CartController(null, mock.Object);
@@ -257,7 +257,7 @@ namespace OnlineGameLaden.UnitTests
 
             // Организация — создание корзины с элементом
             Cart cart = new Cart();
-            cart.AddItem(new Game(), 1);
+            cart.AddItem(new Cube(), 1);
 
             // Организация — создание контроллера
             CartController controller = new CartController(null, mock.Object);

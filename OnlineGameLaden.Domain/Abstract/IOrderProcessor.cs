@@ -1,11 +1,11 @@
-﻿using OnlineGameLaden.Domain.Entities;
+﻿using RubiksCubeStore.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OnlineGameLaden.Domain.Abstract
+namespace RubiksCubeStore.Domain.Abstract
 {
     public interface IOrderProcessor
     {

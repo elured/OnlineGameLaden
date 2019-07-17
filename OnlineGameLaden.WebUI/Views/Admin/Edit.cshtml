@@ -1,24 +1,38 @@
-﻿@model OnlineGameLaden.Domain.Entities.Game
+﻿@model RubiksCubeStore.Domain.Entities.Cube
 @{
     ViewBag.Title = "Adminbereich: Artikelbearbeitung";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Bearbeitung des Spiels "@Model.Name"</h2>
+@if (string.IsNullOrEmpty(Model.Name))
+{
+    <h2>Das neue Spiel hinzufügen</h2>
+}
+else
+{
+    <h2>Bearbeitung des Spiels "@Model.Name"</h2>
+}
 
 <div class="panel">
     <div class="panel-heading">
-        <h3>Artikelbearbeitung: "@Model.Name"</h3>
+        @if (string.IsNullOrEmpty(Model.Name))
+        {
+        <h3>Artikel Hinzufügen</h3>
+        }
+        else
+        {
+            <h3>Artikelbearbeitung: "@Model.Name"</h3>
+        }
     </div>
     @using (Html.BeginForm("Edit", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         <div class="panel-body">
-            @Html.HiddenFor(m => m.GameId)
+            @Html.HiddenFor(m => m.CubeId)
             @foreach (var property in ViewData.ModelMetadata.Properties)
             {
                 switch (property.PropertyName)
                 {
-                    case "GameId":
+                    case "CubeId":
                     case "ImageData":
                     case "ImageMimeType":
                         break;
@@ -52,13 +66,14 @@
                     </a>
                     <span class="label label-info" id="upload-file-info"></span>
                 </div>
-                @if(Model.ImageData == null)
+                @if (Model.ImageData == null)
                 {
                     <div class="form-control-static">Es gibt kein Bild</div>
-                }else
+                }
+                else
                 {
                     <img class="img-thumbnail" width="150" height="150"
-                         src="@Url.Action("GetImage", "Game", new { Model.GameId })"/>
+                         src="@Url.Action("GetImage", "Cube", new { Model.CubeId })" />
                 }
 
             </div>

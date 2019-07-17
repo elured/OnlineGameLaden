@@ -1,11 +1,11 @@
 ﻿using Ninject;
 using Ninject.Modules;
 using Ninject.Web.Mvc;
-using OnlineGameLaden.Domain.Abstract;
-using OnlineGameLaden.Domain.Concrete;
-using OnlineGameLaden.Domain.Entities;
-using OnlineGameLaden.WebUI.Util;
-using OnlineGameLaden.WebUI.Util.Binders;
+using RubiksCubeStore.Domain.Abstract;
+using RubiksCubeStore.Domain.Concrete;
+using RubiksCubeStore.Domain.Entities;
+using RubiksCubeStore.WebUI.Util;
+using RubiksCubeStore.WebUI.Util.Binders;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -15,7 +15,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 
-namespace OnlineGameLaden.WebUI
+namespace RubiksCubeStore.WebUI
 {
     public class MvcApplication : System.Web.HttpApplication
     {

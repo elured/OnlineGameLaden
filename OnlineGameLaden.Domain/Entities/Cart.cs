@@ -4,23 +4,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OnlineGameLaden.Domain.Entities
+namespace RubiksCubeStore.Domain.Entities
 {
     public class Cart
     {
         private List<CartLine> lineCollection = new List<CartLine>();
 
-        public void AddItem(Game game, int quantity)
+        public void AddItem(Cube cube, int quantity)
         {
             CartLine line = lineCollection
-                .Where(g => g.Game.GameId == game.GameId)
+                .Where(g => g.Cube.CubeId == cube.CubeId)
                 .FirstOrDefault();
 
             if (line == null)
             {
                 lineCollection.Add(new CartLine
                 {
-                    Game = game,
+                    Cube = cube,
                     Quantity = quantity
                 });
             }
@@ -30,14 +30,14 @@ namespace OnlineGameLaden.Domain.Entities
             }
         }
 
-        public void RemoveLine(Game game)
+        public void RemoveLine(Cube cube)
         {
-            lineCollection.RemoveAll(l => l.Game.GameId == game.GameId);
+            lineCollection.RemoveAll(l => l.Cube.CubeId == cube.CubeId);
         }
 
         public decimal ComputeTotalValue()
         {
-            return lineCollection.Sum(e => e.Game.Price * e.Quantity);
+            return lineCollection.Sum(e => e.Cube.Price * e.Quantity);
 
         }
         public void Clear()
@@ -53,7 +53,7 @@ namespace OnlineGameLaden.Domain.Entities
 
     public class CartLine
     {
-        public Game Game { get; set; }
+        public Cube Cube { get; set; }
         public int Quantity { get; set; }
     }
 }

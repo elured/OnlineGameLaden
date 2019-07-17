@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace OnlineGameLaden.WebUI.Models
+namespace RubiksCubeStore.WebUI.Models
 {
     public class LoginModel
     {

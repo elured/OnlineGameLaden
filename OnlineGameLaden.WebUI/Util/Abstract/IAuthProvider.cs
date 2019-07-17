@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace OnlineGameLaden.WebUI.Util.Abstract
+namespace RubiksCubeStore.WebUI.Util.Abstract
 {
     public interface IAuthProvider
     {

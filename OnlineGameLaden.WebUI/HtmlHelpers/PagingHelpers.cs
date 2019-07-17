@@ -1,4 +1,4 @@
-﻿using OnlineGameLaden.WebUI.Models;
+﻿using RubiksCubeStore.WebUI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,7 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
-namespace OnlineGameLaden.WebUI.HtmlHelpers
+namespace RubiksCubeStore.WebUI.HtmlHelpers
 {
     public static class PagingHelpers
     {

@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.168
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineGameLaden.Domain", "OnlineGameLaden.Domain\OnlineGameLaden.Domain.csproj", "{A1854B98-2783-4197-BE6B-115DC363A1AA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RubiksCubeStore.Domain", "OnlineGameLaden.Domain\RubiksCubeStore.Domain.csproj", "{A1854B98-2783-4197-BE6B-115DC363A1AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineGameLaden.WebUI", "OnlineGameLaden.WebUI\OnlineGameLaden.WebUI.csproj", "{FE1D751C-1163-481D-BF8F-82883884610A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RubiksCubeStore.WebUI", "OnlineGameLaden.WebUI\RubiksCubeStore.WebUI.csproj", "{FE1D751C-1163-481D-BF8F-82883884610A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineGameLaden.UnitTests", "OnlineGameLaden.UnitTests\OnlineGameLaden.UnitTests.csproj", "{74E71A3E-49A5-4517-86DB-30B3A1E39796}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RubiksCubeStore.UnitTests", "OnlineGameLaden.UnitTests\RubiksCubeStore.UnitTests.csproj", "{74E71A3E-49A5-4517-86DB-30B3A1E39796}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

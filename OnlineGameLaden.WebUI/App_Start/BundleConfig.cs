@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace OnlineGameLaden.WebUI
+namespace RubiksCubeStore.WebUI
 {
     public class BundleConfig
     {

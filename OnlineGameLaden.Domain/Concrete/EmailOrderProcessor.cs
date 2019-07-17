@@ -1,5 +1,5 @@
-﻿using OnlineGameLaden.Domain.Abstract;
-using OnlineGameLaden.Domain.Entities;
+﻿using RubiksCubeStore.Domain.Abstract;
+using RubiksCubeStore.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,7 +9,7 @@ using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OnlineGameLaden.Domain.Concrete
+namespace RubiksCubeStore.Domain.Concrete
 {
 public class EmailSettings
     {
@@ -59,9 +59,9 @@ public class EmailSettings
 
                 foreach (var line in cart.Lines)
                 {
-                    var subtotal = line.Game.Price * line.Quantity;
+                    var subtotal = line.Cube.Price * line.Quantity;
                     body.AppendFormat("{0} x {1} (Gesamt: {2:c}", 
-                        line.Quantity, line.Game.Name, subtotal);
+                        line.Quantity, line.Cube.Name, subtotal);
                 }
 
                 body.AppendFormat("Gesamtbetrag: {0:c}", cart.ComputeTotalValue())

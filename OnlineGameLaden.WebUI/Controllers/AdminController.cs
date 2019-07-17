@@ -1,66 +1,66 @@
-﻿using OnlineGameLaden.Domain.Abstract;
-using OnlineGameLaden.Domain.Entities;
+﻿using RubiksCubeStore.Domain.Abstract;
+using RubiksCubeStore.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace OnlineGameLaden.WebUI.Controllers
+namespace RubiksCubeStore.WebUI.Controllers
 {
     [Authorize]
     public class AdminController : Controller
     {
-        IGameRepository repository;
+        ICubeRepository repository;
 
-        public AdminController(IGameRepository repo)
+        public AdminController(ICubeRepository repo)
         {
             repository = repo;
         }
 
         public ViewResult Index()
         {
-            return View(repository.Games);
+            return View(repository.Cubes);
         }
 
         public ViewResult Create()
         {
-            return View("Edit", new Game());
+            return View("Edit", new Cube());
         }
 
-        public ViewResult Edit(int gameId)
+        public ViewResult Edit(int cubeId)
         {
-            Game game = repository.Games.FirstOrDefault(i => i.GameId == gameId);
-            return View(game);
+            Cube cube = repository.Cubes.FirstOrDefault(i => i.CubeId == cubeId);
+            return View(cube);
         }
 
         [HttpPost]
-        public ActionResult Edit(Game game, HttpPostedFileBase image = null)
+        public ActionResult Edit(Cube cube, HttpPostedFileBase image = null)
         {
             if (ModelState.IsValid)
             {
                 if(image != null)
                 {
-                    game.ImageMimeType = image.ContentType;
-                    game.ImageData = new byte[image.ContentLength];
-                    image.InputStream.Read(game.ImageData, 0, image.ContentLength);
+                    cube.ImageMimeType = image.ContentType;
+                    cube.ImageData = new byte[image.ContentLength];
+                    image.InputStream.Read(cube.ImageData, 0, image.ContentLength);
                 }
-                repository.SaveProdukt(game);
-                TempData["message"] = $"Die Änderungen im Produkt {game.Name} wurden gespeichert";
+                repository.SaveProdukt(cube);
+                TempData["message"] = $"Die Änderungen im Produkt {cube.Name} wurden gespeichert";
                 return RedirectToAction("Index");
             }
             else
                 //etwas ist schief gegangen
-                return View(game);
+                return View(cube);
         }
 
         [HttpPost]
-        public ActionResult Delete(int gameId)
+        public ActionResult Delete(int cubeId)
         {
-            Game gameToDel = repository.DeleteProdukt(gameId);
-            if(gameToDel != null)
+            Cube cubeToDel = repository.DeleteProdukt(cubeId);
+            if(cubeToDel != null)
             {
-                TempData["message"] = $"Das Speil \"{gameToDel.Name}\" wurde gelöscht";
+                TempData["message"] = $"Das Speil \"{cubeToDel.Name}\" wurde gelöscht";
             }
             return RedirectToAction("Index");
         }
