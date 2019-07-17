@@ -29,7 +29,12 @@
                 + (link == ViewBag.SelectedCategory ? " btn-primary" : "")
         })
     }
-
+    @Html.ActionLink("Anmelden", "Login", "Account", null,
+    new
+    {
+        @class = horizontal ? "btn btn-default btn-sm" :
+            "btn btn-block btn-default btn-lg"
+    })
 </div>
 
 
