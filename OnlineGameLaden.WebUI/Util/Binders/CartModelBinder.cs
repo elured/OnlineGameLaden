@@ -13,14 +13,14 @@ namespace OnlineGameLaden.WebUI.Util.Binders
         public object BindModel(ControllerContext controllerContext,
             ModelBindingContext bindingContext)
         {
-            // Получить объект Cart из сеанса
+            // Von der Sitzung CartObject bekommen
             Cart cart = null;
             if (controllerContext.HttpContext.Session != null)
             {
                 cart = (Cart)controllerContext.HttpContext.Session[sessionKey];
             }
 
-            // Создать объект Cart если он не обнаружен в сеансе
+            // CartObject erstellen wenn es in der Sitzung nicht gefunden war
             if (cart == null)
             {
                 cart = new Cart();
@@ -30,7 +30,7 @@ namespace OnlineGameLaden.WebUI.Util.Binders
                 }
             }
 
-            // Возвратить объект Cart
+            // CartObject zurückgeben
             return cart;
         }
     }

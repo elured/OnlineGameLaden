@@ -40,10 +40,5 @@ namespace OnlineGameLaden.WebUI.Controllers
             else
                 return View();
         }
-        // GET: Account
-        //public ActionResult Index()
-        //{
-        //    return View();
-        //}
     }
 }

@@ -14,7 +14,7 @@ namespace OnlineGameLaden.Domain.Concrete
 public class EmailSettings
     {
         public string MailToAddress = "orders@example.com";
-        public string MailFromAddress = "gamestore@example.com";
+        public string MailFromAddress = "cubetore@example.com";
         public bool UseSsl = true;
         public string Username = "MySmtpUsername";
         public string Password = "MySmtpPassword";

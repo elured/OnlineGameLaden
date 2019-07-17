@@ -13,10 +13,8 @@ namespace OnlineGameLaden.Domain.Concrete
 {
     public class EFDbContext : DbContext
     {
-        public EFDbContext()// : base("GameStore")
+        public EFDbContext()
         {
-            
-            //var initialister = new EFDbInitializer();
             Database.SetInitializer<EFDbContext>(new EFDbInitializer());
         }
 
@@ -40,13 +38,9 @@ namespace OnlineGameLaden.Domain.Concrete
                 new Game{Name ="Speed Cube Gan356 Air Master", ImageData = getImageAsByteArray(@"Images\SPEED_CUBE_GAN356_AIR_MASTER.jpg"), ImageMimeType = "image/jpg", Description = "Ausgereifter Speedcube von Gans-Puzzle. Fürs Speedcubing optimierter Mechanismus. Sehr smoothe Drehbewegungen. Der GAN356AIR MASTER verfügt über ein ausgeklügeltes System, das ein sehr smoothes Drehgefühl vermittelt. Dieser Würfel ist ein Profi-Modell für ambitionierte Speedcuber. Im Lieferumfang enthalten sind austauschbare Federn um den Würfel noch individueller zu optimieren. Sehr leichtgängiger Würfel mit kaum Drehwiderstand austauschbare Federn (im Lieferumfang) für individuelle Optimierung, Starkes Cornercutting, Popresistent, Würfel der Profi-Klasse, robuste Sticker, teilweise Neon-Farben, Einstellwerkzeug enthalten", Category = "Rubik's Cube", Price= 34.95M},
                 new Game{Name ="Flower Cube Lucky Lion", ImageData = getImageAsByteArray(@"Images\FLOWER_CUBE_LUCKY_LION.jpg"), ImageMimeType = "image/jpg", Description = "Sehr beliebte Zauberwürfel-Variante. Solide Konstruktion und gute Drehbarkeit. Für Fortgeschrittene. Variation des Helikopter Cubes (Art. 9232), Ausgeklügelter, faszinierender Mechanismus, Geschwungene Linienführung, sehr gute Verarbeitung, flüssige Drehbewegungen sind möglich, eine Herausforderung, besonders geeignet für  fortgeschrittene Spieler, schönes Design, begehrt bei Zauberwürfel-Sammlern", Category = "Rubik's Cube Variations", Price= 12.90M},
                 new Game{Name ="Meffert's Gear Ball", ImageData = getImageAsByteArray(@"Images\MEFFERTS_GEAR BALL.jpg"), ImageMimeType = "image/jpg", Description = "Ball-Zauberwürfel mit Zahnrad Mechanismus. Robuste Fertigung ohne Sticker (Farbige Einzelteile). Qualität und Stabilität von Original Meffert's. Original Gear Ball von Meffert, steckt voller Herausforderungen, die einzelnen Cube-Teile drehen sich dank Zahnradtechnik beim Spielen um sich selbst, steigert die Konzentrationsfähigkeit und trainiert nebenbei den Grips", Category = "Rubik's Cube Variations", Price= 17.95M}
-                //new Game{Name ="", Description = "", Category = "", Price= 1M},
             };
 
             context.Games.AddRange(games);
-            //foreach (Game game in games)
-            //    context.Games.Add(game);
-
             context.SaveChanges();
             base.Seed(context);
         }
@@ -57,7 +51,6 @@ namespace OnlineGameLaden.Domain.Concrete
             if (string.IsNullOrEmpty(path))
                 return ret;
 
-            //            string rootPath = System.Web.HttpContext.Current.Server.MapPath("~/App_Data/" + path);//System.Web.Hosting.HostingEnvironment.ApplicationPhysicalPath;
             path = Path.Combine(pathToImagesOrder, path);
             if (!File.Exists(path))
                 return ret;
@@ -75,7 +68,6 @@ namespace OnlineGameLaden.Domain.Concrete
             {
                 Console.WriteLine($"Error by converting from image to byte: {e.Message}");
             }
-            //ret = System.IO.File.ReadAllBytes(Server)
             return ret;
         }
         

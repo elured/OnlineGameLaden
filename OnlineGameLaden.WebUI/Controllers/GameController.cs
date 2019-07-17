@@ -17,11 +17,6 @@ namespace OnlineGameLaden.WebUI.Controllers
         public GameController(IGameRepository repo)
         {
             repository = repo;
-            //repository.Games.
-            //var newContext = new Domain.Concrete.EFDbContext();
-            //foreach (var item in newContext.Games)
-            //    Console.WriteLine(item.Category);
-           // var rrr=repo.Games.Count();
         }
 
         public ViewResult List(string category, int page = 1)

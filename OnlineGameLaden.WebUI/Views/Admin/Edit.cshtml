@@ -6,13 +6,6 @@
 
 <h2>Bearbeitung des Spiels "@Model.Name"</h2>
 
-@*@using (Html.BeginForm())
-    {
-        @Html.EditorForModel()
-        <input type="submit" value="Speichern" />
-        @Html.ActionLink("Abbrechen und zurück zur Warenliste", "Index")
-    }*@
-
 <div class="panel">
     <div class="panel-heading">
         <h3>Artikelbearbeitung: "@Model.Name"</h3>
@@ -45,12 +38,6 @@
                         </div>
                         break;
                 }
-
-                //if(property.PropertyName != "GameId")
-                //{
-
-                //  }
-
             }
             <div class="form-group">
                 <div style="position:relative">
