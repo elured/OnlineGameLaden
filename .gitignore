@@ -26,3 +26,5 @@
 /OnlineGameLaden.WebUI/obj/Debug
 /OnlineGameLaden.WebUI/App_Data/CubeStore.mdf
 /OnlineGameLaden.WebUI/App_Data/CubeStore_log.ldf
+/RubiksCubeStore.WebUI/App_Data/CubeStore.mdf
+/RubiksCubeStore.WebUI/App_Data/CubeStore_log.ldf
